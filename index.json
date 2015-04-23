@@ -1,0 +1,24 @@
+---
+layout: null
+---
+
+{
+  {% for post in site.pages %}
+    {% if post.title != null %}
+      {% if post != site.pages[1]} %}
+        ,
+      {% endif %}
+      "{{ post.title | slugify }}": {
+        "date": "{{ post.date | date: "%b %-d, %Y" }}",
+        "title": "{{ post.title }}",
+        "synopsis": "{{ post.synopsis }}",
+        "review": {
+          "id": "{{ post.user_id }}",
+          "content": "{{ post.review }}",
+          "user": "{{ post.user_name }}",
+          "role": "{{ post.user_role }}"
+        }
+      }
+    {% endif %}
+  {% endfor %}
+}
